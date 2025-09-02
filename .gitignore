@@ -1,0 +1,19 @@
+# Azure SPN credentials
+spn.json
+.env.azure
+
+# Terraform local state
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.*
+
+# Packer cache
+packer/packer_cache/
+packer/*.log
+
+# OS / Editor junk
+.DS_Store
+*.swp
+*.swo
+*.tmp
