@@ -13,18 +13,19 @@ func main() {
 func ValidPalindrome(inputString string) bool {
 
 	left, right := 0, len(inputString)-1
+	for left < right {
 
-	for left < right && !unicode.IsLetter(rune(inputString[left])) && !unicode.IsDigit(rune(inputString[left])) {
+		for left < right && !unicode.IsLetter(rune(inputString[left])) && !unicode.IsDigit(rune(inputString[left])) {
+			left++
+		}
+		for left < right && !unicode.IsLetter(rune(inputString[right])) && !unicode.IsDigit(rune(inputString[right])) {
+			right--
+		}
+		for unicode.ToLower(rune(inputString[left])) != unicode.ToLower(rune(inputString[right])) {
+			return false
+		}
 		left++
-	}
-	for left < right && !unicode.IsLetter(rune(inputString[right])) && !unicode.IsDigit(rune(inputString[right])) {
 		right--
 	}
-	for unicode.ToLower(rune(inputString[left])) != unicode.ToLower(rune(inputString[right])) {
-		return false
-	}
-	left++
-	right--
-
 	return true
 }
