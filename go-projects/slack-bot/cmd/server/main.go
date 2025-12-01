@@ -5,14 +5,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"os"
+	"slack-bot/internal/config"
 )
 
+// TODO -
+
 func main() {
-	token := os.Getenv("SLACK_TOKEN")
-	channel := os.Getenv("SLACK_CHANNEL")
+	credentials := config.LoadConfig()
 	msg := map[string]string{
-		"channel": channel,
+		"channel": credentials.SlackChannel,
 		"text":    "Hello, Slack!",
 	}
 	body, _ := json.Marshal(msg)
@@ -21,7 +22,7 @@ func main() {
 		panic(err)
 	}
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer "+token)
+	req.Header.Set("Authorization", "Bearer "+credentials.SlackToken)
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		fmt.Println("Error:", err)
