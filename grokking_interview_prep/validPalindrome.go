@@ -21,7 +21,7 @@ func ValidPalindrome(inputString string) bool {
 		for left < right && !unicode.IsLetter(rune(inputString[right])) && !unicode.IsDigit(rune(inputString[right])) {
 			right--
 		}
-		for unicode.ToLower(rune(inputString[left])) != unicode.ToLower(rune(inputString[right])) {
+		if unicode.ToLower(rune(inputString[left])) != unicode.ToLower(rune(inputString[right])) {
 			return false
 		}
 		left++
