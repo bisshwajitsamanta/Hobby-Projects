@@ -57,17 +57,17 @@ func ListPrivateDashboards() ([]*models.Hit, error) {
 }
 
 func main() {
-	//fmt.Println(ListPublicDashboards())
+	fmt.Println(ListPublicDashboards())
 	dashboardResp, err := ListPrivateDashboards()
 	if err != nil {
 		fmt.Println("Error Getting Response", err)
 		return
 	}
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 0, ' ', 0)
-	fmt.Fprintln(w, "TITLE\tUID\tFOLDER\t")
+	_, _ = fmt.Fprintln(w, "TITLE\tUID\tFOLDER\t")
 	for _, dashboard := range dashboardResp {
-		fmt.Fprintf(w, "%s\t%s\t%s\t\n", dashboard.Title, dashboard.UID, dashboard.FolderTitle)
+		_, _ = fmt.Fprintf(w, "%s\t%s\t%s\t\n", dashboard.Title, dashboard.UID, dashboard.FolderTitle)
 	}
-	w.Flush()
+	_ = w.Flush()
 
 }
